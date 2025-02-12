@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -39,6 +40,9 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      backgroundImage: {
+        "banner-bg": "url('../../public/images/herobanner.png')"
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
