@@ -13,7 +13,7 @@ export default {
         neutral: "#D9D9D9",
         violet: "#5B58EB",
         teal: "#161827",
-        darkbg: '#161827',
+        profilebg: '#0D0E17',
         itembg: '#1E2135',
         blue: '#416EF0'
       },
