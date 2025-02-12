@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import signUpSvg from "../../../../public/icons/signup.svg";
+import signUpSvg from "../../../../public/svg/signup.svg";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -26,8 +26,8 @@ const Login = () => {
 
   
   return (
-    <div className="bg-backgroundDark w-full h-screen flex justify-center items-center">
-      <div className="bg-backgroundLight mx-5 lg:mx-0 px-5 text-white w-[361px] h-[330px] rounded-[14px] flex flex-col justify-center">
+    <div className="bg-darkbg w-full h-screen flex justify-center items-center">
+      <div className="bg-itembg mx-5 lg:mx-0 px-5 text-white w-[361px] h-[330px] rounded-[14px] flex flex-col justify-center">
         <Image
           className="pb-3"
           src={signUpSvg}
@@ -40,11 +40,11 @@ const Login = () => {
         <div className="pt-5">
           <label className="font-semibold">Email:</label>
           <input
-            className="bg-backgroundDark w-full mt-3 outline-none py-3 pl-5 rounded-[8px]"
+            className="bg-darkbg w-full mt-3 outline-none py-3 pl-5 rounded-[8px]"
             placeholder="riderezzy@gmail.com"
             onChange={(e) => {setEmail(e.target.value)}}
           />
-          <button onClick={handleVerification} className="border-backgroundDark border w-full py-3 mt-3 rounded-[8px]">
+          <button onClick={handleVerification} className="border-darkbg border w-full py-3 mt-3 rounded-[8px]">
             Continue with email
           </button>
         </div>
