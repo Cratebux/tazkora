@@ -5,7 +5,7 @@ import Button from "./Button";
 const Hero = () => {
   return (
     <main className="py-16">
-      <div className="mb-8 mt-20 lg:mt-10 flex flex-col items-center gap-4 text-center lg:gap-6">
+      <div className="mb-8 lg:mt-10 flex flex-col items-center gap-4 text-center lg:gap-6">
         <h1 className="text-4xl font-extrabold lg:text-6xl">
           Simple Ways to Make <br className="lg:hidden" /> Money{" "}
           <br className="hidden lg:inline-block" /> Online

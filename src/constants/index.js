@@ -41,12 +41,12 @@ export const reviews = [
     comment:
       "The Platform is so easy to use, and the support team is always ready to help. Tazkora is perfect for anyone looking for legit online opportunities.",
   },
-  {
-    name: "Benedict, Reel",
-    date: "January 25, 2025",
-    comment:
-      "The Platform is so easy to use, and the support team is always ready to help. Tazkora is perfect for anyone looking for legit online opportunities.",
-  },
+  // {
+  //   name: "Benedict, Reel",
+  //   date: "January 25, 2025",
+  //   comment:
+  //     "The Platform is so easy to use, and the support team is always ready to help. Tazkora is perfect for anyone looking for legit online opportunities.",
+  // },
 ];
 
 export const reasons = [

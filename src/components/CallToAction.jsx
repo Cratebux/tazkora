@@ -12,7 +12,9 @@ const CallToAction = () => {
     <section
       className={`flex flex-col items-center justify-center gap-6 px-4 py-16 ${pathname !== "/business" ? "bg-neutral text-black" : "bg-teal text-white"}`}
     >
-      <SectionHeading>Small Tasks, Big Rewards</SectionHeading>
+      <SectionHeading className={"text-center"}>
+        Small Tasks, Big Rewards
+      </SectionHeading>
 
       <SectionParagraph className="text-center">
         Don’t miss out on the opportunity to earn money online. join thousands
