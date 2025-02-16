@@ -1,4 +1,4 @@
-import Header from "@/app/component/Header";
+import Header from "../../components/HomeHeader";
 import Partners from "@/components/Partners";
 import Tasks from "../../components/Tasks";
 import gamebanner from '../../../public/images/gamebanner.png'
