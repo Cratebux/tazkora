@@ -1,6 +1,7 @@
+import Setting from "@/components/profile/Setting"
 const Settings = () => {
   return (
-    <div>Settings</div>
+    <Setting/>
   )
 }
 

@@ -15,7 +15,7 @@ const ProfileHeader = () => {
         />
       </Link>
 
-      <nav className="flex items-center justify-between gap-4">
+      <nav className="flex items-center justify-between text-white gap-4">
         <button className="flex size-10 items-center justify-center rounded-full bg-blue">
           <Plus />
         </button>

@@ -8,7 +8,7 @@ export default function ProfileLayout({ children }) {
       <ProfileHeader />
 
       <main className="flex items-start gap-6">
-        <ProfileSideBar />
+        <ProfileSideBar/>
 
         <div className="min-h-[75vh] w-full lg:w-[75%]">{children}</div>
       </main>

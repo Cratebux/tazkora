@@ -3,7 +3,7 @@ import success from "../../../../public/svg/success.svg";
 
 const Success = () => {
   return (
-    <div className="bg-darkbg w-full h-screen flex justify-center items-center">
+    <div className="bg-profilebg w-full h-screen flex justify-center items-center">
       <div className="bg-itembg mx-5 lg:mx-0 px-5 text-white w-[361px] h-[330px] rounded-[14px] flex flex-col items-center text-center justify-center">
         <Image src={success} alt="icon" width="54" height="54" />
         <h1 className="font-bold text-2xl py-5">Account Secured</h1>

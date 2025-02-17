@@ -1,7 +1,11 @@
-const FundWallet = () => {
-  return (
-    <div>FundWallet</div>
-  )
-}
+import FundWallet from "@/components/profile/FundWallet";
 
-export default FundWallet
+const Fund_Wallet = () => {
+  return (
+    <>
+      <FundWallet />
+    </>
+  );
+};
+
+export default Fund_Wallet;

@@ -1,7 +1,9 @@
-const Payout = () => {
+import Payout from "@/components/profile/Payout"
+
+const PayOut = () => {
   return (
-    <div>Payout</div>
+    <Payout/>
   )
 }
 
-export default Payout
+export default PayOut

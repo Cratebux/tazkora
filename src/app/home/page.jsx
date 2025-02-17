@@ -1,4 +1,4 @@
-import Header from "../../components/HomeHeader";
+import HomeHeader from "../../components/HomeHeader";
 import Partners from "@/components/Partners";
 import Tasks from "../../components/Tasks";
 import gamebanner from '../../../public/images/gamebanner.png'
@@ -8,8 +8,8 @@ import QuickTasks from "../../components/QuickTasks";
 import Surveys from "../../components/Surveys";
 const Home = () => {
   return(
-    <div className="bg-darkbg">
-      <Header/>
+    <div className="bg-profilebg">
+      <HomeHeader/>
       <Partners/>
       <Tasks/>
       <Image

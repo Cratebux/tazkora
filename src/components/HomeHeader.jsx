@@ -1,49 +1,43 @@
-import Image from "next/image"
-import Link from "next/link"
-import notification from '../../public/svg/notification.svg'
-import user from '../../public/svg/user.svg'
-import banner from '../../public/images/herobanner.png'
+import Image from "next/image";
+import Link from "next/link";
+import { Bell, Plus, User } from "lucide-react";
+import notification from "../../public/svg/notification.svg";
+import user from "../../public/svg/user.svg";
+import banner from "../../public/images/herobanner.png";
 
 const Home = () => {
-  return(
+  return (
     <>
+      <header className="object-fit bg-cover bg-no-repeat pt-5 lg:h-screen lg:bg-banner-bg lg:px-10">
+        {/* start of header */}
+        <div className="flex justify-between px-5 pb-5 lg:pb-0 items-center">
+          <h1 className="text-3xl font-bold text-white">Tazkora</h1>
+          <nav className="flex items-center justify-between text-white gap-4">
+            <button className="flex size-10 items-center justify-center rounded-full bg-blue">
+              <Plus />
+            </button>
 
-      <header className="lg:h-screen lg:bg-banner-bg  lg:mx-10 pt-5 bg-cover object-fit bg-no-repeat">
-          {/* start of header */}
-          <div className="flex justify-between lg:pb-0 pb-5 px-5">
-            <h1 className="font-bold text-white text-3xl">Tazkora</h1>
-            <div className="flex items-center gap-5">
-                <button className="font-bold bg-blue-800 px-3 pb-1   text-white rounded-full text-2xl">+</button>
-                <div className="bg-darkbg lg:px-5 gap-2 py-3 rounded-full  w-max flex">
-                    <Link href={'/'}>
-                        <Image
-                            src={notification}
-                            width={20}
-                            height={20}
-                            alt="bell"
-                        />
-                    </Link>
-                    <Link href={'/'}>
-                        <Image
-                            src={user}
-                            width={20}
-                            height={20}
-                            alt="bell"
-                        />
-                    </Link>
-                </div>
+            <div className="flex items-center justify-between gap-4 rounded-full bg-teal p-2.5">
+              <button className="flex size-10 items-center justify-center rounded-full bg-itembg">
+                <Bell />
+              </button>
+              <button className="flex size-10 items-center justify-center rounded-full bg-itembg">
+                <User />
+              </button>
             </div>
-          </div>
-          {/* end of header */}
-          <div>
-            <h1 className="hidden text-center h-screen items-center lg:grid justify-center text-[4rem] text-white font font-bold">Simple ways to make <br/>money online </h1>
-          </div>
+          </nav>
+        </div>
+        {/* end of header */}
+        <div>
+          <h1 className="font hidden h-screen items-center justify-center text-center text-[4rem] font-bold text-white lg:grid">
+            Simple ways to make <br />
+            money online{" "}
+          </h1>
+        </div>
       </header>
-          <div className="bg-banner-bg object-fit bg-cover h-[15rem] w-full">
-            
-          </div>
+      <div className="object-fit h-[15rem] w-full bg-banner-bg bg-cover lg:h-0 lg:bg-none"></div>
     </>
-  )
+  );
 };
 
-export default Home
+export default Home;
