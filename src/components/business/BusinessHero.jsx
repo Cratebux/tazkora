@@ -7,7 +7,8 @@ const BusinessHero = () => {
     <main className="py-16">
       <div className="mb-8 mt-20 flex flex-col items-center gap-4 text-center lg:mt-10 lg:gap-6">
         <h1 className="text-4xl font-extrabold lg:text-6xl">
-          Boost Engagements & Drive <br className="hidden lg:inline-block" />
+          Boost Engagements <br className="lg:hidden" /> & Drive{" "}
+          <br className="hidden lg:inline-block" />
           Growth
         </h1>
         {/* <br className="lg:hidden" /> */}

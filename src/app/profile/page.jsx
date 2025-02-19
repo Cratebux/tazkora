@@ -2,7 +2,9 @@ import React from 'react'
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div className='lg:px-8 px-4'>
+
+    </div>
   )
 }
 

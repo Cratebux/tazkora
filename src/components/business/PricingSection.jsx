@@ -91,7 +91,7 @@ const PricingSection = () => {
             <SwiperSlide key={index}>
               <div
                 className={
-                  index === 1 ? `rounded-3xl bg-primary text-white pt-1` : ""
+                  index === 1 ? `rounded-3xl bg-primary pt-1 text-white` : ""
                 }
               >
                 {index === 1 && (
@@ -130,63 +130,6 @@ const PricingSection = () => {
           ))}
         </Swiper>
       </div>
-
-      {/* <Carousel
-        className="w-full max-w-[100vw] p-20 lg:hidden"
-        // plugins={[
-        //   Autoplay({
-        //     delay: 2000,
-        //   }),
-        // ]}
-      >
-        <CarouselContent className="">
-          {pricings.map((item, index) => (
-            <CarouselItem
-              className="grid items-center justify-items-center md:basis-1/2 lg:basis-1/3"
-              key={index}
-            >
-              <div
-                key={index}
-                className={
-                  index === 1 ? `rounded-3xl bg-primary text-white` : ""
-                }
-              >
-                {index === 1 && (
-                  <h2 className="my-6 text-center text-2xl font-semibold uppercase">
-                    Most Popular
-                  </h2>
-                )}
-
-                <div
-                  className={`rounded-3xl p-4 py-10 ${index !== 0 ? "bg-white text-black" : "bg-primary text-white"}`}
-                >
-                  <h3 className="text-xl font-semibold">{item.package}</h3>
-                  <div className="flex items-end">
-                    <h3 className="text-3xl font-semibold">₦{item.price}</h3>
-                    <p> / Month</p>
-                  </div>
-
-                  <ul className="mt-4 space-y-2.5">
-                    {item.perks.map((perk) => (
-                      <ListItem key={perk}>{perk}</ListItem>
-                    ))}
-                  </ul>
-
-                  <button
-                    className={`mt-28 w-full rounded-2xl py-4 text-3xl font-semibold ${
-                      index > 0
-                        ? "bg-primary text-white"
-                        : "bg-white text-primary"
-                    }`}
-                  >
-                    {index > 0 ? "Select Plan" : "Current Plan"}
-                  </button>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel> */}
     </section>
   );
 };

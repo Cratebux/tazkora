@@ -68,7 +68,7 @@ const Footer = () => {
             <Image src="/svg/x.svg" alt="social icon" width={28} height={28} />
           </Link>
 
-          <Link href="https://discord.gg/cRCse5Eb" target="_blank">
+          <Link href="https://discord.gg/z9Svhtgs" target="_blank">
             <Image
               src="/svg/discord.svg"
               alt="social icon"

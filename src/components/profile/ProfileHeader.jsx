@@ -1,11 +1,18 @@
+"use client";
 import { Bell, Plus, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Dialog, DialogTrigger } from "../ui/dialog";
+import CreatePostDialog from "./CreatePostDialog";
+import NotificationDrawer from "../NotificationDrawer";
 
 const ProfileHeader = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const handleClose = () => setIsOpen(false);
+
   return (
-    <header className="flex w-full items-center justify-between py-6 lg:py-10">
+    <header className="flex w-full items-center justify-between py-4 lg:py-6">
       <Link href="/">
         <Image
           src="/svg/tazkora-white.svg"
@@ -16,19 +23,29 @@ const ProfileHeader = () => {
       </Link>
 
       <nav className="flex items-center justify-between gap-4">
-        <button className="flex size-10 items-center justify-center rounded-full bg-blue">
-          <Plus />
-        </button>
+        <Dialog className="rounded-full">
+          <DialogTrigger className="flex size-8 items-center justify-center rounded-full bg-blue lg:size-10">
+            <Plus />
+          </DialogTrigger>
 
-        <div className="flex items-center justify-between gap-4 rounded-full bg-teal p-2.5">
-          <button className="flex size-10 items-center justify-center rounded-full bg-itembg">
+          <CreatePostDialog />
+        </Dialog>
+
+        <div className="flex items-center justify-between gap-4 rounded-full bg-teal p-2">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="flex size-7 items-center justify-center rounded-full bg-itembg lg:size-10"
+          >
             <Bell />
           </button>
-          <button className="flex size-10 items-center justify-center rounded-full bg-itembg">
+
+          <button className="flex size-7 items-center justify-center rounded-full bg-itembg lg:size-10">
             <User />
           </button>
         </div>
       </nav>
+
+      <NotificationDrawer isOpen={isOpen} handleClose={handleClose} />
     </header>
   );
 };

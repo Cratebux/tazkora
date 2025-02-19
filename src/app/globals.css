@@ -10,3 +10,11 @@ html {
   border: 1px solid red;
 } */
 
+.profile {
+  background-image: url("/images/avatar.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  filter: blur(10px);
+  object-fit: cover;
+}

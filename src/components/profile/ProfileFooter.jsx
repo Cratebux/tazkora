@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import React from "react";
 
 const ProfileFooter = () => {
   return (
-    <footer className="flex w-full flex-col items-center gap-6 overflow-hidden border-t border-[#2A2B33] py-4 lg:flex-row lg:justify-between lg:gap-0">
+    <footer className="hidden lg:flex w-full flex-col items-center gap-6 overflow-hidden border-t border-[#2A2B33] py-4 lg:flex-row lg:justify-between lg:gap-0">
       <ul className="flex w-full items-center justify-between text-sm lg:w-auto lg:justify-start lg:gap-6">
         <li>Tazkora.com</li>
         <li>Terms of Use</li>

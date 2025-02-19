@@ -227,3 +227,42 @@ export const businessReasons = [
     ],
   },
 ];
+
+export const notification = [
+  {
+    image: "/svg/notification-warning.svg",
+    title: "Warning",
+    message: "Community Guidelines Warning",
+    time: "Now",
+  },
+  {
+    image: "/svg/notification-cash.svg",
+    title: "Earn for watching YouTube!",
+    message: "₦100.0 received.",
+    time: "4 days",
+  },
+  {
+    image: "/svg/notification-cash.svg",
+    title: "Follow RT3 on X!",
+    message: "₦100.0 received.",
+    time: "5 days",
+  },
+  {
+    image: "/svg/notification-cash.svg",
+    title: "Text the Trixrewrd app",
+    message: "₦100.0 received.",
+    time: "5 days",
+  },
+  {
+    image: "/svg/notification-message.svg",
+    title: "Text the Trixrewrd app",
+    message: "₦100.0 received.",
+    time: "5 days",
+  },
+  {
+    image: "/svg/notification-message.svg",
+    title: "Welcome to Tazkora!",
+    message: "Kick off your first task today and start earning rewards. 🚀",
+    time: "Now",
+  },
+];
