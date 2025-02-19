@@ -1,11 +1,18 @@
-import React from 'react'
+import Image from "next/image";
+import React from "react";
+import warning from '../../../public/svg/!.svg'
+import MyReward from "@/components/profile/MyReward";
+import RecentPayout from "@/components/profile/RecentPayout";
+import RecommendedTask from "@/components/profile/RecommendedTasks";
 
 const Profile = () => {
   return (
-    <div className='lg:px-8 px-4'>
+    <>
+      <MyReward/>
+      <RecentPayout/> 
+      <RecommendedTask/>
+    </>
+  );
+};
 
-    </div>
-  )
-}
-
-export default Profile
+export default Profile;

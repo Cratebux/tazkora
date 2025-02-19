@@ -1,6 +1,7 @@
+"use client"
 import Image from "next/image";
-import pasteSvg from "../../../../public/icons/paste.svg";
-import back from "../../../../public/icons/back.svg";
+import pasteSvg from "../../../../public/svg/paste.svg";
+import back from "../../../../public/svg/back.svg";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -9,16 +10,16 @@ const Verify = () => {
 
   // Function verification code sent to the user's email
   const handleVerification = async() => {
-      const data = await fetch('/send-verification', {
+      const data = await fetch('https://tazkora.up.railway.app/api/users/verify', {
         method: 'post',
         headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({code})
+        body: JSON.stringify({email, code})
       })
   }
   
   return (
-    <div className="bg-backgroundDark w-full h-screen flex justify-center items-center">
-      <div className="bg-backgroundLight mx-5 lg:mx-0 px-5 text-white w-[361px] h-[330px] rounded-[14px] flex flex-col justify-center">
+    <div className="bg-profilebg w-full h-screen flex justify-center items-center">
+      <div className="bg-itembg mx-5 lg:mx-0 px-5 text-white w-[361px] h-[330px] rounded-[14px] flex flex-col justify-center">
         <Link href="/login">
           <Image
             className="pb-3"
@@ -35,12 +36,12 @@ const Verify = () => {
           gmail. Please enter it below
         </p>
         <div className="pt-5 flex justify-between">
-          <input className="bg-backgroundDark outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
-          <input className="bg-backgroundDark outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
-          <input className="bg-backgroundDark outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
-          <input className="bg-backgroundDark outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
-          <input className="bg-backgroundDark outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
-          <input className="bg-backgroundDark outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
+          <input className="bg-profilebg outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
+          <input className="bg-profilebg outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
+          <input className="bg-profilebg outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
+          <input className="bg-profilebg outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
+          <input className="bg-profilebg outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
+          <input className="bg-profilebg outline-none flex mx-auto w-[44] h-[44] mt-3 rounded-[8px]" />
         </div>
 
         <div>

@@ -1,7 +1,7 @@
-import rucci from '../../../public/images/rucci.png'
-import rts from '../../../public/images/rt3.png'
-import quantum from '../../../public/images/quantum.png'
-import trix from '../../../public/images/trix.png'
+import rucci from '../../public/images/rucci.png'
+import rts from '../../public/images/rt3.png'
+import quantum from '../../public/images/quantum.png'
+import trix from '../../public/images/trix.png'
 import Image from 'next/image'
 
 
@@ -50,7 +50,7 @@ const PartnerCard = () => {
     <div className='lg:flex gap-5 items-center grid grid-cols-2 lg:justify-between pt-10'>
         {
             data.map((items) => (
-                <div key={items.id} className='lg:w-[220] w-[173.76px] rounded-t-[1.4rem] bg-backgroundLight'>
+                <div key={items.id} className='lg:w-[220] w-[173.76px] rounded-t-[1.4rem] bg-itembg'>
                     <Image alt='image' className='w-full lg:h-[150] h-[100.65px]' src={items.image}/>
                     <div className='px-5 text-white'>
                         <h1 className='lg:text-[1rem] text-[.7rem] font-bold pt-5'>{items.task}</h1>

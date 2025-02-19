@@ -1,15 +1,15 @@
-import Header from "@/app/component/Header";
-import Partners from "@/app/component/Partners";
-import Tasks from "../component/Tasks";
+import HomeHeader from "../../components/HomeHeader";
+import Partners from "@/components/Partners";
+import Tasks from "../../components/Tasks";
 import gamebanner from '../../../public/images/gamebanner.png'
 import gamebanner2 from '../../../public/images/gamebanner2.png'
 import Image from "next/image";
-import QuickTasks from "../component/QuickTasks";
-import Surveys from "../component/Surveys";
+import QuickTasks from "../../components/QuickTasks";
+import Surveys from "../../components/Surveys";
 const Home = () => {
   return(
-    <div className="bg-backgroundDark">
-      <Header/>
+    <div className="bg-profilebg">
+      <HomeHeader/>
       <Partners/>
       <Tasks/>
       <Image
