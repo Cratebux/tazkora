@@ -6,12 +6,7 @@ import piggyBank from "../../../public/svg/piggybank_guide.png.svg";
 const FundWallet = () => {
   return (
     <div className="pb-10">
-      <div className="flex gap-5 pb-5">
-        <ArrowLeft />
-        <p>Back</p>
-      </div>
       <h1 className="lg:text-[2rem] font-bold">Fund Wallet</h1>
-
       <div className="pt-10">
         <p>Tap here & enter.. (e.g 5000)</p>
         <input

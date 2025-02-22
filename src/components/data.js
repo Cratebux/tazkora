@@ -1,47 +1,12 @@
-import rucci from '../../public/images/rucci.png'
-import rts from '../../public/images/rt3.png'
-import quantum from '../../public/images/quantum.png'
-import trix from '../../public/images/trix.png'
-const data =
-    [{
-        id: 1,
-        image: rucci,
-        task: "Search, follow &...",
-        task2: "Search for an article, sign...",
-        price: '100',
-        quota: "78/200"
-      },
+export const barChartData = {
+    labels: ["Dec 31", "Jan 1", "Jan 4", "Jan 7", "Jan 10", "Jan 13", "Jan 16", "Jan 19", "Jan 22", "Jan 29"],
+    datasets: [
       {
-        id: 2,
-        image: trix,
-        task: "Search, follow &...",
-        task2: "Search for an article, sign...",
-        price: '100',
-        quota: "78/200"
-      },
-      {
-        id: 3,
-        image: quantum,
-        task: "Search, follow &...",
-        task2: "Search for an article, sign...",
-        price: '100',
-        quota: "78/200"
-      },
-      {
-        id: 4,
-        image: rts,
-        task: "Search, follow &...",
-        task2: "Search for an article, sign...",
-        price: '100',
-        quota: "78/200"
-      },
-      {
-        id: 5,
-        image: rucci,
-        task: "Search, follow &...",
-        task2: "Search for an article, sign...",
-        price: '100',
-        quota: "78/200"
-      }]
-
-export default data
+        label: "Expenses",
+        data: [0, 0, 0, 0, 0, 0.012, 0, 0, 0, 0, 0, 0 ],
+        backgroundColor: "green",
+        boderColor: "rgba(54, 162, 235, 1",
+        borderWidth: 1,
+      }
+    ]
+}

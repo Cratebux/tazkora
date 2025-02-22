@@ -9,11 +9,6 @@ import deleteBtn from "../../../public/svg/delete.svg";
 const Setting = () => {
   return (
     <div>
-      <div className="flex gap-5 pb-5">
-        <ArrowLeft />
-        <p>Back</p>
-      </div>
-
       <div>
         <h1 className="font-bold lg:text-[2rem]">My Account Settings</h1>
 
