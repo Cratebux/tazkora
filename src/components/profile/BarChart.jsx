@@ -19,7 +19,7 @@ ChartJS.register(
   Legend,
 );
 
-import { barChartData } from "../data";
+import { barChartData } from "../BarChart";
 
 const BarChart = () => {
   const options = {};
