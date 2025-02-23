@@ -72,14 +72,14 @@ const Verify = () => {
           We sent a code to <span className="text-base font-bold">{email}</span>{" "}
           via gmail. Please enter it below
         </p>
-        <div className="flex justify-between pt-5 w-full">
+        <div className="flex justify-between pt-5 w-full overflow-hidden">
           {code.map((value, index) => (
             <input
               onChange={(e) => handleInputChange(index, e.target.value)}
               value={value}
               key={index}
               maxLength="1"
-              className="mx-auto mt-3 flex h-[44] w-[44] rounded-[8px] bg-profilebg text-center outline-none"
+              className="mt-3 flex h-[2.5rem] w-[2.5rem] rounded-[8px] bg-profilebg text-center outline-none"
             />
           ))}
         </div>
