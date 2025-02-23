@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import warning from '../../../public/svg/!.svg'
+import warning from '../../../public/svg/warning.svg'
 
 const MyReward = () => {
   return (
