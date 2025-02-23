@@ -72,7 +72,7 @@ const Verify = () => {
           We sent a code to <span className="text-base font-bold">{email}</span>{" "}
           via gmail. Please enter it below
         </p>
-        <div className="flex justify-between pt-5">
+        <div className="flex justify-between pt-5 w-full">
           {code.map((value, index) => (
             <input
               onChange={(e) => handleInputChange(index, e.target.value)}
