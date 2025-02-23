@@ -10,25 +10,30 @@ const Login = () => {
   const router = useRouter();
   const { email, setEmail } = useContext(EmailContext);
 
-  const sendVerification = async () => {
+  const sendVerification = async (e) => {
+
+    e.preventDefault()
     if(newemail){
       setEmail(newemail);
     }
-    const data = await fetch(
-      "https://tazkora-production.up.railway.app/api/users/request-access",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      },
-    );
-    const response = await data.json();
-    console.log(response);
-    if (response.email) {
-      router.push("/verify");
-    } else {
-      alert("Login Failed");
-    }
+
+    setTimeout( async() => {
+      const data = await fetch(
+        "https://tazkora-production.up.railway.app/api/users/request-access",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        },
+      );
+      const response = await data.json();
+      console.log(response);
+      if (response.email) {
+        router.push("/verify");
+      } else {
+        alert("Login Failed");
+      }
+    }, 5000);
   };
 
   return (

@@ -12,9 +12,6 @@ const Verify = () => {
   const { email, setToken } = useContext(EmailContext);
   const router = useRouter();
 
-  // console.log(email)
-  // console.log(code)
-
   // Function verification code sent to the user's email
   const handleInputChange = (index, value) => {
     if (value.length > 1) {
@@ -33,24 +30,26 @@ const Verify = () => {
     }
   };
 
-  const handleVerification = async (code) => {
+  const handleVerification = async () => {
+    
     const data = await fetch(
       "https://tazkora-production.up.railway.app/api/users/verify",
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email, code: code }),
+        body: JSON.stringify({ email: email, code: newcode }),
       },
     );
     const response = await data.json();
-    console.log(response)
-    // setToken(response)
-    if (response.ok) {
+    // console.log(response.token)
+    if (response.token) {
       router.push("/success");
+      setToken(true)
     }
   };
 
   const hasAllValues = code.every(value => value !== "");
+  const newcode = code.join("")
 
   if(hasAllValues ) {
     handleVerification();

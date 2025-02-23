@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
-import { token } from '../src/app/context/EmailContext'
+// import { token } from '../src/app/context/EmailContext'
+
+import { token } from "./app/context/EmailContext";
+
 
 export const middleware = (request) => {
 
