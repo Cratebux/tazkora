@@ -1,34 +1,44 @@
-"use client"
+"use client";
 import Image from "next/image";
 import signUpSvg from "../../../../public/svg/signup.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
+import { EmailContext } from "@/app/context/EmailContext";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  // const [verify, setVerify] =useState(false)
-  const router = useRouter()
+  const [newemail, setNewEmail] = useState("");
+  const router = useRouter();
+  const { email, setEmail } = useContext(EmailContext);
 
-  const sendVerification = async() => {
-      const data = await fetch('https://tazkora.up.railway.app/api/users/request-access', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify({email})
-      })
-      
+  const sendVerification = async (e) => {
+
+    e.preventDefault()
+    if(newemail){
+      setEmail(newemail);
+    }
+
+    setTimeout( async() => {
+      const data = await fetch(
+        "https://tazkora-production.up.railway.app/api/users/request-access",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        },
+      );
       const response = await data.json();
-      // console.log(response)
-      // if(response.ok) {
-      //   router.push('/verify')
-      // }else{
-      //   alert("Login Failed")
-      // }
-  }
+      console.log(response);
+      if (response.email) {
+        router.push("/verify");
+      } else {
+        alert("Login Failed");
+      }
+    }, 5000);
+  };
 
-  
   return (
-    <div className="bg-profilebg w-full h-screen flex justify-center items-center">
-      <div className="bg-itembg mx-5 lg:mx-0 px-5 text-white w-[361px] h-[330px] rounded-[14px] flex flex-col justify-center">
+    <div className="flex h-screen w-full items-center justify-center bg-profilebg">
+      <div className="mx-5 flex h-[330px] w-[361px] flex-col justify-center rounded-[14px] bg-itembg px-5 text-white lg:mx-0">
         <Image
           className="pb-3"
           src={signUpSvg}
@@ -36,16 +46,21 @@ const Login = () => {
           width="64"
           height="64"
         />
-        <h1 className="font-bold text-2xl">Welcome to Tazkora</h1>
+        <h1 className="text-2xl font-bold">Welcome to Tazkora</h1>
         <p className="">Please sign in or sign below</p>
         <div className="pt-5">
           <label className="font-semibold">Email:</label>
           <input
-            className="bg-profilebg w-full mt-3 outline-none py-3 pl-5 rounded-[8px]"
+            className="mt-3 w-full rounded-[8px] bg-profilebg py-3 pl-5 outline-none"
             placeholder="riderezzy@gmail.com"
-            onChange={(e) => {setEmail(e.target.value)}}
+            onChange={(e) => {
+              setNewEmail(e.target.value);
+            }}
           />
-          <button onClick={sendVerification} className="border-profilebg border w-full py-3 mt-3 rounded-[8px]">
+          <button
+            onClick={sendVerification}
+            className="mt-3 w-full rounded-[8px] border border-profilebg py-3"
+          >
             Continue with email
           </button>
         </div>

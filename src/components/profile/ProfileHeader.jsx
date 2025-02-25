@@ -43,9 +43,9 @@ const ProfileHeader = () => {
             <Bell />
           </button>
 
-          <button className="flex size-7 items-center justify-center rounded-full bg-itembg lg:size-10">
+          <Link href="/profile" className="flex size-7 items-center justify-center rounded-full bg-itembg lg:size-10">
             <User />
-          </button>
+          </Link>
         </div>
       </nav>
 

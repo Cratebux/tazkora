@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Bell, Plus, User } from "lucide-react";
-import notification from "../../public/svg/notification.svg";
-import user from "../../public/svg/user.svg";
-import banner from "../../public/images/herobanner.png";
 
 const Home = () => {
   return (
@@ -11,7 +8,7 @@ const Home = () => {
       <header className="object-fit bg-cover bg-no-repeat pt-5 lg:h-screen lg:bg-banner-bg lg:px-10">
         {/* start of header */}
         <div className="flex justify-between px-5 pb-5 lg:pb-0 items-center">
-          <h1 className="text-3xl font-bold text-white">Tazkora</h1>
+          <Link href="/" className="text-3xl font-bold text-white">Tazkora</Link>
           <nav className="flex items-center justify-between text-white gap-4">
             <button className="flex size-10 items-center justify-center rounded-full bg-blue">
               <Plus />
@@ -21,9 +18,9 @@ const Home = () => {
               <button className="flex size-10 items-center justify-center rounded-full bg-itembg">
                 <Bell />
               </button>
-              <button className="flex size-10 items-center justify-center rounded-full bg-itembg">
+              <Link href="/profile" className="flex size-10 items-center justify-center rounded-full bg-itembg">
                 <User />
-              </button>
+              </Link>
             </div>
           </nav>
         </div>
