@@ -6,13 +6,14 @@ import Section from "../SectionComponents/Section";
 import SectionHeading from "../SectionComponents/SectionHeading";
 import SectionParagraph from "../SectionComponents/SectionParagraph";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { redirect } from 'next/navigation';
 
 const PromotionSection = () => {
   return (
     <section className="bg-teal py-20 text-black" id="earn-money">
       <Section className="mb-12 px-4 text-white">
         <SectionHeading>
-          Ways to Promote your brand <br className="hidden lg:inline-block" /> {' '}
+          Ways to Promote your brand <br className="hidden lg:inline-block" />{" "}
           with Tazkora
         </SectionHeading>
         <SectionParagraph>
@@ -35,7 +36,10 @@ const PromotionSection = () => {
 
             <p className="lg:w-[80%]">{card.desc}</p>
 
-            <button className="rounded-lg border border-violet px-4 py-2 font-semibold text-violet">
+            <button
+              className="rounded-lg border border-violet px-4 py-2 font-semibold text-violet"
+              onClick={() => redirect("/business/learn-more")}
+            >
               Learn More
             </button>
           </div>
@@ -63,7 +67,10 @@ const PromotionSection = () => {
 
               <p className="lg:w-[80%]">{card.desc}</p>
 
-              <button className="rounded-lg border border-violet px-4 py-2 font-semibold text-violet">
+              <button
+                className="rounded-lg border border-violet px-4 py-2 font-semibold text-violet"
+                onClick={() => redirect("/business/learn-more")}
+              >
                 Learn More
               </button>
             </CarouselItem>

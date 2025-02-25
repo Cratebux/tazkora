@@ -7,6 +7,7 @@ import Image from "next/image";
 import QuickTasks from "../../components/QuickTasks";
 import Surveys from "../../components/Surveys";
 import ProfileFooter from "@/components/profile/ProfileFooter";
+
 const Home = () => {
   return (
     <div className="bg-profilebg">

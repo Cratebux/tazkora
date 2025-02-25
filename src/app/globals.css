@@ -18,3 +18,11 @@ html {
   filter: blur(10px);
   object-fit: cover;
 }
+
+.createModal ::-webkit-scrollbar {
+  display: none;
+}
+
+.createModal {
+  scrollbar-width: none;
+}

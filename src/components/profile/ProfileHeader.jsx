@@ -9,6 +9,7 @@ import NotificationDrawer from "../NotificationDrawer";
 
 const ProfileHeader = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [taskCreatedModal, setTaskCreatedModal] = useState(false);
   const handleClose = () => setIsOpen(false);
 
   return (
@@ -28,7 +29,10 @@ const ProfileHeader = () => {
             <Plus />
           </DialogTrigger>
 
-          <CreatePostDialog />
+          <CreatePostDialog
+            taskCreatedModal={taskCreatedModal}
+            setTaskCreatedModal={setTaskCreatedModal}
+          />
         </Dialog>
 
         <div className="flex items-center justify-between gap-4 rounded-full bg-teal p-2">
