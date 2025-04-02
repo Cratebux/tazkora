@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
-// import { token } from '../src/app/context/EmailContext'
+import { token } from "./app/home/page";
 
-import { token } from "./app/context/EmailContext";
-
+console.log(token)
 
 export const middleware = (request) => {
-
     if(!token){
         return NextResponse.redirect(
             new URL('/login', request.url)
@@ -15,5 +13,5 @@ export const middleware = (request) => {
 }
 
 export const config = {
-    matcher: ['/home']
+    matcher: [ '/profile', '/home' ]
 }

@@ -1,15 +1,14 @@
-"use client"
+"use client";
 
 import { createContext, useState } from "react";
 
-export const EmailContext = createContext({}); // Provide a default value
+export const EmailContext = createContext({});
 
 export const EmailProvider = ({ children }) => {
   const [email, setEmail] = useState("");
-  const [token, setToken] = useState(false);
 
   return (
-    <EmailContext.Provider value={{ email, setEmail, token, setToken }}>
+    <EmailContext.Provider value={{ email, setEmail }}>
       {children}
     </EmailContext.Provider>
   );

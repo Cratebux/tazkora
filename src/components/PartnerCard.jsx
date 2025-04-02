@@ -1,71 +1,34 @@
-import rucci from '../../public/images/rucci.png'
-import rts from '../../public/images/rt3.png'
-import quantum from '../../public/images/quantum.png'
-import trix from '../../public/images/trix.png'
+import data from '../components/data'
 import Image from 'next/image'
 
 
 const PartnerCard = () => {
-  const data = [{
-    id: 1,
-    image: rucci,
-    task: "Search, follow &...",
-    task2: "Search for an article, sign...",
-    price: '100',
-    quota: "78/200"
-  },
-  {
-    id: 2,
-    image: trix,
-    task: "Search, follow &...",
-    task2: "Search for an article, sign...",
-    price: '100',
-    quota: "78/200"
-  },
-  {
-    id: 3,
-    image: quantum,
-    task: "Search, follow &...",
-    task2: "Search for an article, sign...",
-    price: '100',
-    quota: "78/200"
-  },
-  {
-    id: 4,
-    image: rts,
-    task: "Search, follow &...",
-    task2: "Search for an article, sign...",
-    price: '100',
-    quota: "78/200"
-  },
-  {
-    id: 5,
-    image: rucci,
-    task: "Search, follow &...",
-    task2: "Search for an article, sign...",
-    price: '100',
-    quota: "78/200"
-  }]
   return (
-    <div className='lg:flex gap-5 items-center grid grid-cols-2 lg:justify-between pt-10'>
-        {
-            data.map((items) => (
-                <div key={items.id} className='lg:w-[220] w-[173.76px] rounded-t-[1.4rem] bg-itembg'>
-                    <Image alt='image' className='w-full lg:h-[150] h-[100.65px]' src={items.image}/>
-                    <div className='px-5 text-white'>
-                        <h1 className='lg:text-[1rem] text-[.7rem] font-bold pt-5'>{items.task}</h1>
-                        <p className='text-[.9rem]'>{items.task2}</p>
-                        <div className='flex justify-between items-center pt-3 pb-2'>
-                            <p className='bg-gray-500 text-[.8rem] font-bold rounded py-2 px-5'>₦{items.price}</p>
-                            <div className='text-right'>
-                                <p className='text-[.6rem]'>Available Quota</p>
-                                <h1 className='font-bold'>{items.quota}</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            ))
-        }
+    <div className="grid grid-cols-2 items-center gap-5 pt-10 lg:grid-cols-5 lg:justify-between">
+      {data.map((items) => (
+        <div key={items.id} className="rounded-[1.4rem] bg-itembg lg:w-[220]">
+          <Image
+            alt="image"
+            className="h-[100.65px] w-full rounded-t-[1.4rem] object-cover lg:h-[150]"
+            src={items.image}
+          />
+          <div className="px-2 pb-2 text-white">
+            <h1 className="pt-3 lg:text-[1rem] text-[.8rem] font-bold">{items.task}</h1>
+            <p className="lg:text-[.7rem] text-[.5rem]">{items.task2}</p>
+            <div className="flex items-center lg:justify-between gap-3 lg:gap-0 pb-2 pt-3">
+              <p className="lg:rounded rounded-full bg-gray-500 px-3 py-1 lg:text-[.8rem] text-[.6rem] font-bold lg:px-5 lg:py-2">
+                ₦{items.price}
+              </p>
+              <div className="text-right">
+                <p className="text-[.6rem] hidden lg:flex">Available Quota</p>
+                <h1 className="text-[.6rem] font-bold lg:text-[.8rem]">
+                  {items.quota}
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
