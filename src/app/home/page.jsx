@@ -1,3 +1,4 @@
+"use client";
 import HomeHeader from "../../components/HomeHeader";
 import Partners from "@/components/Partners";
 import Tasks from "../../components/Tasks";
@@ -7,7 +8,37 @@ import Image from "next/image";
 import QuickTasks from "../../components/QuickTasks";
 import Surveys from "../../components/Surveys";
 import HomeFooter from "@/components/HomeFooter";
+import { useRouter } from "next/navigation";
+
+export const token = localStorage.getItem("authToken");
+
+
 const Home = () => {
+  const router = useRouter();
+
+  const checkTokenExpiration = () => {
+    const token = localStorage.getItem("authToken");
+    const expiryDate = localStorage.getItem("expiryDate");
+
+    if (!token || !expiryDate) {
+      return false;
+    }
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    if (currentTime > expiryDate) {
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("expiryDate");
+      return false;
+    }
+
+    return true;
+  };
+
+  checkTokenExpiration();
+  if (!checkTokenExpiration()) {
+    router.push("/login");
+  }
+
   return (
     <div className="bg-profilebg">
       <HomeHeader />
@@ -25,7 +56,7 @@ const Home = () => {
         alt="gamebanner"
         className="w-full px-5 py-10 lg:px-10"
       />
-      <HomeFooter/>
+      <HomeFooter />
     </div>
   );
 };

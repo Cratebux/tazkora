@@ -31,9 +31,8 @@ const Verify = () => {
   };
 
   const handleVerification = async () => {
-    
     const data = await fetch(
-      "https://tazkora-production.up.railway.app/api/users/verify",
+      "https://tazkora-3.onrender.com/api/users/verify",
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -41,17 +40,22 @@ const Verify = () => {
       },
     );
     const response = await data.json();
-    // console.log(response.token)
+
     if (response.token) {
+      const currentTime = Math.floor(Date.now() / 1000);
+      const expiryDate = currentTime + 3600;
+      localStorage.setItem("expiryDate", expiryDate);
+      localStorage.setItem("authToken", response.token);
       router.push("/success");
-      setToken(true)
+    } else {
+      alert("verification failed, please try again");
     }
   };
 
-  const hasAllValues = code.every(value => value !== "");
-  const newcode = code.join("")
+  const hasAllValues = code.every((value) => value !== "");
+  const newcode = code.join("");
 
-  if(hasAllValues ) {
+  if (hasAllValues) {
     handleVerification();
   }
 
@@ -72,7 +76,7 @@ const Verify = () => {
           We sent a code to <span className="text-base font-bold">{email}</span>{" "}
           via gmail. Please enter it below
         </p>
-        <div className="flex justify-between pt-5 w-full overflow-hidden">
+        <div className="flex w-full justify-between overflow-hidden pt-5">
           {code.map((value, index) => (
             <input
               onChange={(e) => handleInputChange(index, e.target.value)}

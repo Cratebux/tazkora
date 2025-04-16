@@ -7,11 +7,9 @@ import { EmailContext } from "@/app/context/EmailContext";
 
 const Login = () => {
   const [newemail, setNewEmail] = useState("");
+  const { setEmail, email } = useContext(EmailContext)
   const router = useRouter();
-  const { email, setEmail } = useContext(EmailContext);
-
   const sendVerification = async (e) => {
-
     e.preventDefault()
     if(newemail){
       setEmail(newemail);
@@ -19,7 +17,7 @@ const Login = () => {
 
     setTimeout( async() => {
       const data = await fetch(
-        "https://tazkora-production.up.railway.app/api/users/request-access",
+        "https://tazkora-3.onrender.com/api/users/request-access",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -27,7 +25,6 @@ const Login = () => {
         },
       );
       const response = await data.json();
-      console.log(response);
       if (response.email) {
         router.push("/verify");
       } else {
