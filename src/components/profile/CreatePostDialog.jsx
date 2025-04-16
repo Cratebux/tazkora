@@ -1,59 +1,78 @@
 "use client";
 import { Camera } from "lucide-react";
 import { DialogContent, DialogTitle } from "../ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "flowbite-react";
 import Image from "next/image";
+import axios from 'axios';
 
 const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
-  const [bio, setBio] = useState("");
-  const [taskType, setTaskType] = useState("online");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [taskCategory, setTaskCategory] = useState("");
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    bio: "",
+    taskCategory: "",
+    deadline: "",
+    verificationMethod: "",
+    totalSpots: "",
+    rewardPerUser: "",
+    taskLink: "",
+    taskType: "",
+  });
+
   const [deadline, setDeadline] = useState("");
-  const [verificationMethod, setVerificationMethod] = useState("");
-  const [targetLink, setTargetLink] = useState("");
-  const [budget, setBudget] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    const formattedDate = new Date(
+      now.getTime() - now.getTimezoneOffset() * 60000,
+    )
+      .toISOString()
+      .slice(0, 16);
+
+    setDeadline(formattedDate); // Store min selectable date
+    setFormData((prevData) => ({
+      ...prevData,
+      deadline: formattedDate, // Set default value
+    }));
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value, // Update the specific field dynamically
+    }));
+  };
 
   const createTask = async (e) => {
     e.preventDefault();
     const url =
       "https://tazkora-production.up.railway.app/api/users/tasks/create";
 
-    const data = {
-      title,
-      description,
-      taskType,
-      taskCategory,
-      deadline,
-      verificationMethod,
-      targetLink,
-      budget,
-      bio,
-    };
-
-    console.log(data);
-
-    setTaskCreatedModal(true);
+    console.log("Form Data:", formData);
 
     const config = {
       headers: {
         Authorization: process.env.USER_TOKEN,
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     };
 
     try {
-      const response = await axios.post(url, data, config);
+      const response = await axios.post(url, formData, config);
+      
       console.log("Success:", response.data);
+      
+      setTaskCreatedModal(true);
     } catch (error) {
       if (error.response) {
         // Server responded with an error status
         console.error(
           "Server Error:",
           error.response.status,
-          error.response.data,
+          error.response.message,
         );
       } else if (error.request) {
         // Request was made but no response received
@@ -62,17 +81,21 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
         // Other errors (e.g., request setup issue)
         console.error("Error:", error.message);
       }
-    } finally {
-      setTitle("");
-      setDescription("");
-      setTaskType("");
-      setTaskCategory("");
-      setDeadline("");
-      setVerificationMethod("");
-      setTargetLink("");
-      setBudget("");
-      setBio("");
     }
+    // finally {
+    //   setFormData({
+    //     title: "",
+    //     description: "",
+    //     bio: "",
+    //     taskCategory: "",
+    //     deadline: "",
+    //     verificationMethod: "",
+    //     totalSpots: "",
+    //     rewardPerUser: "",
+    //     taskLink: "",
+    //     taskType: "",
+    //   });
+    // }
   };
 
   return (
@@ -90,26 +113,38 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
               className="flex aspect-square size-16 cursor-pointer items-center justify-center rounded-full bg-modalInput"
             >
               <Camera />
-              <input type="file" className="hidden" id="picture" required />
+              <input type="file" className="hidden" id="picture" />
             </label>
 
             <div className="flex w-full flex-col gap-2 rounded-3xl bg-modalInput p-3 py-4">
               <label htmlFor="bio">Bio</label>
               <textarea
                 id="bio"
-                value={bio}
                 name="bio"
-                required
-                onChange={(e) => setBio(e.target.value)}
+                value={formData.bio}
+                onChange={handleChange}
                 placeholder="Write a short descripition about business, influence etc."
                 className="w-full resize-none border-0 bg-transparent shadow-none outline-0 ring-0"
+                required
               ></textarea>
             </div>
           </div>
 
           <div className="flex justify-between">
             <h2 className="text-lg font-semibold">Task Type</h2>
-            <div className="rounded-lg bg-modalInput px-4 py-2">Online</div>
+
+            <select
+              name="taskType"
+              onChange={handleChange}
+              value={formData.taskType || "twitter"}
+              className="rounded-lg bg-modalInput px-4 py-2"
+              required
+            >
+              <option value="twitter">Twitter</option>
+              <option value="discord">Discord</option>
+              <option value="telegram">Telegram</option>
+              <option value="others">Others</option>
+            </select>
           </div>
 
           <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4">
@@ -119,8 +154,9 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
 
             <input
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
               placeholder="Short, clear title (e.g., “Follow Instagram Page”)."
               className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
               required
@@ -134,8 +170,9 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
 
             <input
               id="desc"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
               placeholder="Detailed instructions (e.g.  “Follow @BrandX and like 3 posts”)"
               className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
               required
@@ -148,10 +185,11 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
 
               <select
                 id="category"
+                name="taskCategory"
                 placeholder="Detailed instructions (e.g.  “Follow @BrandX and like 3 posts”)"
                 className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
-                value={taskCategory}
-                onChange={(e) => setTaskCategory(e.target.value)}
+                value={formData.taskCategory}
+                onChange={handleChange}
                 required
               >
                 <option value="watch-video">Watch video</option>
@@ -166,13 +204,44 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
             <label htmlFor="deadline" className="flex items-center gap-4">
               <h2 className="text-lg font-semibold">Deadline</h2>
 
-              <select
-                id="deadline"
-                placeholder="Detailed instructions (e.g.  “Follow @BrandX and like 3 posts”)"
+              <input
+                type="datetime-local"
+                name="deadline"
+                value={formData.deadline}
+                onChange={handleChange}
                 className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
-              >
-                <option value="social-media">Timeframe (e.g.)</option>
-              </select>
+                min={deadline} // ✅ Corrected: `min` now prevents past dates
+              />
+            </label>
+          </div>
+
+          <div className="grid items-center gap-4 lg:grid-cols-2">
+            <label htmlFor="totalSpots" className="flex items-center gap-4">
+              <h2 className="min-w-max text-lg font-semibold">Total Spots</h2>
+
+              <input
+                id="totalSpots"
+                name="totalSpots"
+                placeholder="Amount of users"
+                className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
+                value={formData.totalSpots}
+                onChange={handleChange}
+                required
+              />
+            </label>
+
+            <label htmlFor="rewardPerUser" className="flex items-center gap-4">
+              <h2 className="text-lg font-semibold">Rewards Per User</h2>
+
+              <input
+                id="rewardPerUser"
+                name="rewardPerUser"
+                placeholder="NGN 200"
+                className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
+                value={formData.rewardPerUser}
+                onChange={handleChange}
+                required
+              />
             </label>
           </div>
 
@@ -185,9 +254,10 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
             </h2>
 
             <input
-              value={verificationMethod}
-              onChange={(e) => setVerificationMethod(e.target.value)}
+              value={formData.verificationMethod}
+              onChange={handleChange}
               id="verification"
+              name="verificationMethod"
               placeholder="How proof will be validated (auto API, screenshot..)"
               className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
               required
@@ -201,27 +271,12 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
             <h2 className="min-w-max text-lg font-semibold">Target Link</h2>
 
             <input
-              value={targetLink}
-              onChange={(e) => setTargetLink(e.target.value)}
+              value={formData.taskLink}
+              onChange={handleChange}
               id="target-link"
+              name="taskLink"
               type="url"
-              className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
-              required
-            />
-          </label>
-
-          <label
-            className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-4"
-            htmlFor="budget"
-          >
-            <h2 className="text-lg font-semibold">Budget</h2>
-
-            <input
-              value={budget}
-              onChange={(e) => setBudget(e.target.value)}
-              id="budget"
-              type="text"
-              placeholder="Total funds allocated (e.g., ₦10,000 for 100 followers ."
+              placeholder="https://twitter.com/yourhandle"
               className="w-full rounded-lg bg-modalInput px-4 py-2 outline-none"
               required
             />

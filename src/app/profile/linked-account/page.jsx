@@ -1,6 +1,17 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import {
+  handleDiscordAuth,
+  handleTwitterAuth,
+  removeDiscordAuth,
+  removeTwitterAuth,
+} from "@/utils/socialAuth";
 
 const LinkedAccount = () => {
+  const router = useRouter();
+
   return (
     <section className="pb-8">
       <div className="mb-6">
@@ -25,13 +36,31 @@ const LinkedAccount = () => {
             <p className="font-semibold">Twitter</p>
             <p className="text-neutral2">ridderezzy</p>
           </div>
-          <Image
-            className="ml-auto"
-            src="/svg/social-checked.svg"
-            alt="checked"
-            width={35}
-            height={35}
-          />
+          {/* {
+            //TODO  Check if twitter is linked
+            <Image
+              className="ml-auto"
+              src="/svg/social-checked.svg"
+              alt="checked"
+              width={35}
+              height={35}
+            />
+            } */}
+          <button
+            className="ml-auto rounded-lg bg-blue px-3 py-1 text-white"
+            onClick={() => handleTwitterAuth(router)}
+          >
+            Link
+          </button>
+          <button onClick={() => removeTwitterAuth()}>
+            <Image
+              className="ml-auto"
+              src="/svg/social-checked.svg"
+              alt="checked"
+              width={35}
+              height={35}
+            />
+          </button>
         </div>
 
         <div className="flex items-center gap-4 rounded-xl bg-itembg px-6 py-6">
@@ -61,8 +90,20 @@ const LinkedAccount = () => {
             <p className="font-semibold">Discord</p>
           </div>
 
-          <button className="ml-auto rounded-lg bg-blue px-3 py-1 text-white">
+          <button
+            className="ml-auto rounded-lg bg-blue px-3 py-1 text-white"
+            onClick={() => handleDiscordAuth(router)}
+          >
             Link
+          </button>
+          <button onClick={() => removeDiscordAuth()}>
+            <Image
+              className="ml-auto"
+              src="/svg/social-checked.svg"
+              alt="checked"
+              width={35}
+              height={35}
+            />
           </button>
         </div>
       </div>
