@@ -2,6 +2,7 @@
 import Image from "next/image";
 import success from "../../../../public/svg/success.svg";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Success = () => {
   const router = useRouter()
@@ -14,9 +15,9 @@ const Success = () => {
           You fit now log in, post tasks, or start earing daily. Na your time to
           shine
         </p>
-        <button onClick={()=> router.push('/home')} className="bg-blue-600 px-10 py-3 w-max rounded-full text-white mt-5">
+        <Link href="/home" className="bg-blue-600 px-10 py-3 w-max rounded-full text-white mt-5">
           let's go!
-        </button>
+        </Link>
       </div>
     </div>
   );
