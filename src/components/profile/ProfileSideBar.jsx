@@ -4,12 +4,15 @@ import { Pencil } from "lucide-react";
 import { Camera } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import NavItem from "./NavItem";
 import NavButtons from "./NavButtons";
 import { handlePageRedirect } from "@/utils";
+import { WalletContext } from "@/app/context/WalletContent";
 
 const ProfileSideBar = ({ setSidebaropen }) => {
+
+  const { balance } = useContext(WalletContext)
   return (
     <div className="py-6 lg:pt-0 w-full space-y-3 lg:block lg:w-[28%]">
       <div className="space-y-3 rounded-xl bg-itembg px-5 py-4">
@@ -64,7 +67,7 @@ const ProfileSideBar = ({ setSidebaropen }) => {
           <div className="space-y-3 border-t border-[#393C4D] py-2">
             <div className="flex items-end justify-between">
               <p className="text-xl font-semibold">My earnings</p>
-              <p className="text-2xl font-semibold">₦1,400.00</p>
+              <p className="text-2xl font-semibold">₦{balance}</p>
             </div>
 
             <div className="mb-4 h-1.5 w-full rounded-full bg-[#335D35]">

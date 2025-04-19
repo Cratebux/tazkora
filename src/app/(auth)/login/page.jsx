@@ -4,18 +4,20 @@ import signUpSvg from "../../../../public/svg/signup.svg";
 import { useContext, useState } from "react";
 import { useRouter } from "next/navigation";
 import { EmailContext } from "@/app/context/EmailContext";
+import { Loader2 } from "lucide-react";
 
 const Login = () => {
   const [newemail, setNewEmail] = useState("");
-  const { setEmail, email } = useContext(EmailContext)
+  const [isLoading, setIsLoading] = useState(false);
+  const { setEmail, email } = useContext(EmailContext);
   const router = useRouter();
   const sendVerification = async (e) => {
-    e.preventDefault()
-    if(newemail){
+    e.preventDefault();
+    if (newemail) {
       setEmail(newemail);
+      setIsLoading(true);
     }
-
-    setTimeout( async() => {
+    setTimeout(async () => {
       const data = await fetch(
         "https://tazkora-3.onrender.com/api/users/request-access",
         {
@@ -28,6 +30,7 @@ const Login = () => {
       if (response.email) {
         router.push("/verify");
       } else {
+        setIsLoading(false);
         alert("Login Failed");
       }
     }, 5000);
@@ -54,11 +57,19 @@ const Login = () => {
               setNewEmail(e.target.value);
             }}
           />
+
           <button
             onClick={sendVerification}
             className="mt-3 w-full rounded-[8px] border border-profilebg py-3"
           >
-            Continue with email
+            {isLoading ? (
+              <div className="flex justify-center gap-3">
+                <Loader2 className="animate-spin" /> 
+                <p>Please wait</p>
+              </div>
+            ) : (
+              "Continue with email"
+            )}
           </button>
         </div>
       </div>

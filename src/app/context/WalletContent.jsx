@@ -6,30 +6,67 @@ import { createContext, useState, useEffect } from "react";
 export const WalletContext = createContext({});
 
 export const WalletProvider = ({ children }) => {
-  const [balance, setBalance] = useState("");
+  const [balance, setBalance] = useState();
   const [history, setHistory] = useState({});
   const [url, setUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  // const [reference, setReference] = useState("");
   const router = useRouter();
 
   const token = localStorage.getItem("authToken");
-  // console.log(token)
+  console.log(token);
+  const reference = localStorage.getItem("reference");
+  const amount = 40000
 
-  const deposit = async (amount) => {
-    const data = await fetch(
-      "https://tazkora-3.onrender.com/api/wallet/deposit",
+  const deposit = async () => {
+    if(amount){
+      setIsLoading(true)
+        const data = await fetch(
+          "https://tazkora-3.onrender.com/api/wallet/deposit",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ amount: amount }),
+          },
+        );
+        const response = await data.json();
+        setUrl(response.data.authorization_url);
+        localStorage.setItem("reference", response.data.reference)
+        console.log(response);
+        router.push(url);
+        setIsLoading(false)
+    }
+  };
+
+
+  // console.log(reference)
+
+  const verify = async () => {
+    const verify = await fetch(
+      `https://tazkora-3.onrender.com/api/wallet/verify?reference=${reference}`,
       {
-        method: "POST",
+        method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount: amount }),
       },
     );
-    const response = await data.json();
-    setUrl(response.data.authorization_url);
-    router.push(url);
+    const response = await verify.json();
+    console.log(response);
+    localStorage.removeItem("reference")
   };
+
+  // useEffect(() => {
+    if (reference) {
+      setTimeout(() => {
+        verify();
+      }, 40000);
+    }
+  // }, [reference]);
 
   const withdraw = async (amount, accountNumber) => {
     const data = await fetch(
@@ -41,11 +78,11 @@ export const WalletProvider = ({ children }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "amount": amount,
-          "bankCode": "057",
-          "accountNumber": accountNumber,
-          "accountName": "Test Account"
-      }),
+          amount: 20,
+          bankCode: "057",
+          accountNumber: 91456587483,
+          accountName: "Test Account",
+        }),
       },
     );
     const response = await data.json();
@@ -64,6 +101,7 @@ export const WalletProvider = ({ children }) => {
     );
     const response = await data.json();
     setBalance(response.data.balance);
+    console.log(balance);
   };
 
   const fetchHistory = async () => {
@@ -80,11 +118,12 @@ export const WalletProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    withdraw();
     fetchBalance();
     fetchHistory();
   }, []);
   return (
-    <WalletContext.Provider value={{ balance, history, url, deposit }}>
+    <WalletContext.Provider value={{ balance, history, url, deposit, isLoading }}>
       {children}
     </WalletContext.Provider>
   );
