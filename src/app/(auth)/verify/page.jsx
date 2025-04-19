@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 const Verify = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [paste, setPaste] = useState("")
-  const { email, setToken } = useContext(EmailContext);
+  const { email } = useContext(EmailContext);
   const router = useRouter();
 
   const handlePaste = async () => {
@@ -53,7 +53,7 @@ const Verify = () => {
       const expiryDate = currentTime + 3600;
       localStorage.setItem("expiryDate", expiryDate);
       localStorage.setItem("authToken", response.token);
-      router.push("/success");
+      // router.push("/success");
     } else {
       alert("verification failed, please try again");
     }
