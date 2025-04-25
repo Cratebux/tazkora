@@ -9,14 +9,14 @@ import { useRouter } from "next/navigation";
 
 const Verify = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const [paste, setPaste] = useState("")
+  const [paste, setPaste] = useState("");
   const { email } = useContext(EmailContext);
   const router = useRouter();
 
   const handlePaste = async () => {
-      const text = await navigator.clipboard.readText();
-      setPaste(text);
-      console.log(paste)
+    const text = await navigator.clipboard.readText();
+    setPaste(text);
+    console.log(paste);
   };
 
   // Function verification code sent to the user's email
@@ -96,9 +96,12 @@ const Verify = () => {
         </div>
 
         <div>
-          <button onClick={handlePaste} className="mt-5 flex h-5 w-max items-center gap-2 rounded-[8px] bg-white bg-opacity-5 px-5 py-5">
+          <button
+            onClick={handlePaste}
+            className="mt-5 flex h-5 w-max items-center gap-2 rounded-[8px] bg-white bg-opacity-5 px-5 py-5"
+          >
             <Image src={pasteSvg} width={14} height={14} alt="paste" />
-            <p  className="font-semibold text-white">Paste Code</p>
+            <p className="font-semibold text-white">Paste Code</p>
           </button>
         </div>
       </div>

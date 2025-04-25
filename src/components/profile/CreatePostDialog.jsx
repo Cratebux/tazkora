@@ -21,6 +21,7 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
   });
 
   const [deadline, setDeadline] = useState("");
+  const Token = localStorage.getItem("Token")
 
   useEffect(() => {
     const now = new Date();
@@ -54,7 +55,7 @@ const CreatePostDialog = ({ taskCreatedModal, setTaskCreatedModal }) => {
 
     const config = {
       headers: {
-        Authorization: process.env.USER_TOKEN,
+        Authorization: `Bearer ${Token}`,
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },

@@ -13,9 +13,12 @@ export const WalletProvider = ({ children }) => {
   // const [reference, setReference] = useState("");
   const router = useRouter();
 
-  const token = localStorage.getItem("authToken");
-  console.log(token);
-  const reference = localStorage.getItem("reference");
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    const reference = localStorage.getItem("reference");
+  },[])
+
+  // console.log(token);
   const amount = 40000
 
   const deposit = async () => {
