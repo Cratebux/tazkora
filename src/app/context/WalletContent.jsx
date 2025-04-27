@@ -27,6 +27,7 @@ export const WalletProvider = ({ children }) => {
 
   const deposit = async () => {
     if(amount){
+      if (typeof window !== "undefined") {
       setIsLoading(true)
         const data = await fetch(
           "https://tazkora-3.onrender.com/api/wallet/deposit",
@@ -45,6 +46,7 @@ export const WalletProvider = ({ children }) => {
         console.log(response);
         router.push(url);
         setIsLoading(false)
+      }
     }
   };
 
