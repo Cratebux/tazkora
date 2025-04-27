@@ -49,13 +49,15 @@ const Verify = () => {
     const response = await data.json();
 
     if (response.token) {
-      const currentTime = Math.floor(Date.now() / 1000);
-      const expiryDate = currentTime + 3600;
-      localStorage.setItem("expiryDate", expiryDate);
-      localStorage.setItem("authToken", response.token);
-      // router.push("/success");
-    } else {
-      alert("verification failed, please try again");
+      if (typeof window !== "undefined") {
+        const currentTime = Math.floor(Date.now() / 1000);
+        const expiryDate = currentTime + 3600;
+        localStorage.setItem("expiryDate", expiryDate);
+        localStorage.setItem("authToken", response.token);
+        // router.push("/success");
+      } else {
+        alert("verification failed, please try again");
+      }
     }
   };
 

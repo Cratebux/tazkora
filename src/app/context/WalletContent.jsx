@@ -10,15 +10,19 @@ export const WalletProvider = ({ children }) => {
   const [history, setHistory] = useState({});
   const [url, setUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false)
-  // const [reference, setReference] = useState("");
+  const [token, setToken] = useState("");
+  const [reference, setReference] = useState("");
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    const reference = localStorage.getItem("reference");
-  },[])
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("authToken");
+      const storedReference = localStorage.getItem("reference");
+      setToken(storedToken);
+      setReference(storedReference);
+    }
+  }, []);
 
-  // console.log(token);
   const amount = 40000
 
   const deposit = async () => {
@@ -60,7 +64,9 @@ export const WalletProvider = ({ children }) => {
     );
     const response = await verify.json();
     console.log(response);
-    localStorage.removeItem("reference")
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("reference");
+    }
   };
 
   // useEffect(() => {
