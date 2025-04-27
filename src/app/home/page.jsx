@@ -10,13 +10,14 @@ import Surveys from "../../components/Surveys";
 import HomeFooter from "@/components/HomeFooter";
 import { useRouter } from "next/navigation";
 
-export const token = localStorage.getItem("authToken");
+// export const token = localStorage.getItem("authToken");
 
 
 const Home = () => {
   const router = useRouter();
 
   const checkTokenExpiration = () => {
+    if (typeof window !== "undefined") {
     const token = localStorage.getItem("authToken");
     const expiryDate = localStorage.getItem("expiryDate");
 
@@ -30,6 +31,7 @@ const Home = () => {
       localStorage.removeItem("expiryDate");
       return false;
     }
+  }
 
     return true;
   };
