@@ -33,7 +33,7 @@ const Login = () => {
         setIsLoading(false);
         alert("Login Failed");
       }
-    }, 5000);
+    }, 3000);
   };
 
   return (
@@ -64,7 +64,7 @@ const Login = () => {
           >
             {isLoading ? (
               <div className="flex justify-center gap-3">
-                <Loader2 className="animate-spin" /> 
+                <Loader2 className="animate-spin" />
                 <p>Please wait</p>
               </div>
             ) : (

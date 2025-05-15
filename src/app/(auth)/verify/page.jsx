@@ -9,14 +9,12 @@ import { useRouter } from "next/navigation";
 
 const Verify = () => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
-  const [paste, setPaste] = useState("");
   const { email } = useContext(EmailContext);
   const router = useRouter();
 
   const handlePaste = async () => {
     const text = await navigator.clipboard.readText();
-    setPaste(text);
-    console.log(paste);
+    setCode(text.split(""));
   };
 
   // Function verification code sent to the user's email
@@ -54,7 +52,7 @@ const Verify = () => {
         const expiryDate = currentTime + 3600;
         localStorage.setItem("expiryDate", expiryDate);
         localStorage.setItem("authToken", response.token);
-        // router.push("/success");
+        router.push("/success");
       } else {
         alert("verification failed, please try again");
       }

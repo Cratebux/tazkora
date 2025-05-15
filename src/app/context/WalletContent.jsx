@@ -9,10 +9,12 @@ export const WalletProvider = ({ children }) => {
   const [balance, setBalance] = useState();
   const [history, setHistory] = useState({});
   const [url, setUrl] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState("");
   const [reference, setReference] = useState("");
   const router = useRouter();
+
+  // console.log(localStorage.getItem("authToken"))
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,12 +25,14 @@ export const WalletProvider = ({ children }) => {
     }
   }, []);
 
-  const amount = 40000
+  // console.log
+
+  const amount = 40000;
 
   const deposit = async () => {
-    if(amount){
+    if (amount) {
       if (typeof window !== "undefined") {
-      setIsLoading(true)
+        setIsLoading(true);
         const data = await fetch(
           "https://tazkora-3.onrender.com/api/wallet/deposit",
           {
@@ -42,16 +46,17 @@ export const WalletProvider = ({ children }) => {
         );
         const response = await data.json();
         setUrl(response.data.authorization_url);
-        localStorage.setItem("reference", response.data.reference)
+        if (typeof window !== "undefined") {
+          localStorage.setItem("reference", response.data.reference);
+        }
         console.log(response);
         router.push(url);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
   };
 
-
-  // console.log(reference)
+  // console.log(token)
 
   const verify = async () => {
     const verify = await fetch(
@@ -72,11 +77,11 @@ export const WalletProvider = ({ children }) => {
   };
 
   // useEffect(() => {
-    if (reference) {
-      setTimeout(() => {
-        verify();
-      }, 40000);
-    }
+  // if (reference) {
+  //   setTimeout(() => {
+  //     verify();
+  //   }, 40000);
+  // }
   // }, [reference]);
 
   const withdraw = async (amount, accountNumber) => {
@@ -106,13 +111,13 @@ export const WalletProvider = ({ children }) => {
       "https://tazkora-3.onrender.com/api/wallet/balance",
       {
         method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}`, },
         "Content-Type": "application/json",
       },
     );
     const response = await data.json();
-    setBalance(response.data.balance);
-    console.log(balance);
+    // setBalance(response.data.balance);
+    console.log(response);
   };
 
   const fetchHistory = async () => {
@@ -128,13 +133,15 @@ export const WalletProvider = ({ children }) => {
     setHistory(response.data);
   };
 
-  useEffect(() => {
-    withdraw();
-    fetchBalance();
-    fetchHistory();
-  }, []);
+  // useEffect(() => {
+  //   withdraw();
+  //   fetchBalance();
+  //   fetchHistory();
+  // }, []);
   return (
-    <WalletContext.Provider value={{ balance, history, url, deposit, isLoading }}>
+    <WalletContext.Provider
+      value={{ balance, history, url, deposit, isLoading }}
+    >
       {children}
     </WalletContext.Provider>
   );
