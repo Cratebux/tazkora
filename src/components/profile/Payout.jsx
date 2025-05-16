@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const Payout = () => {
   const [amount, setAmount] = useState();
@@ -7,7 +7,7 @@ const Payout = () => {
   const [token, setToken] = useState("");
   const [url, setUrl] = useState("");
   const [reference, setReference] = useState("");
-  const router = useRouter();
+  // const router = useRouter();
 
   const verify = async () => {
     const verify = await fetch(
@@ -46,7 +46,7 @@ const Payout = () => {
     );
     const response = await data.json();
     setUrl(response.data.authorization_url);
-    router.push(url);
+    // router.push(url);
   };
   return (
     <div className="pb-10">
