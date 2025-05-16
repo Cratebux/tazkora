@@ -66,10 +66,13 @@ const FundWallet = () => {
         );
         const response = await data.json();
         setUrl(response.data.authorization_url);
-        if (typeof window !== "undefined") {
-          localStorage.setItem("reference", response.data.reference);
-        }
-        console.log(response);
+        setReference(response.data.reference);
+        // useEffect(() => {
+        //   if (typeof window !== "undefined") {
+        //     localStorage.setItem("reference", response.data.reference);
+        //   }
+        // })
+        // console.log(response);
         verify()
         setTimeout(() => {
           router.push(response.data.authorization_url);
