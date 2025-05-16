@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { token } from "./app/home/page";
+// import { token } from "./app/home/page";
 
 // console.log(token);
+const token = true
 
 export const middleware = (request) => {
   if (token) {

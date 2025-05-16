@@ -43,9 +43,9 @@ const FundWallet = () => {
     );
     const response = await verify.json();
     console.log(response);
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("reference");
-    }
+    // if (typeof window !== "undefined") {
+    //   localStorage.removeItem("reference");
+    // }
   };
 
 
